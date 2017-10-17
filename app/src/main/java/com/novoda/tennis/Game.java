@@ -1,15 +1,15 @@
 package com.novoda.tennis;
 
 class Game {
-    private final Player roger;
-    private final Player rafa;
+    private final Player playerOne;
+    private final Player playerTwo;
 
-    Game(Player roger, Player rafa) {
-        this.roger = roger;
-        this.rafa = rafa;
+    Game(Player playerOne, Player playerTwo) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
     }
 
-    public String score() {
+    String score() {
         return null;
     }
 }

@@ -9,5 +9,7 @@ class Game {
         this.rafa = rafa;
     }
 
-
+    public String score() {
+        return null;
+    }
 }

@@ -8,11 +8,13 @@ import static org.fest.assertions.api.Assertions.assertThat;
 public class TennisTest {
 
     private Game game;
+    private Player roger;
+    private Player rafa;
 
     @Before
     public void setUp() throws Exception {
-        Player roger = new Player("Roger");
-        Player rafa = new Player("Rafa");
+        roger = new Player("Roger");
+        rafa = new Player("Rafa");
 
         game = new Game(roger, rafa);
     }

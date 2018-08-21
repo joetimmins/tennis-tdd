@@ -12,7 +12,7 @@ public class TennisTest {
     private Player rafa;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         roger = new Player("Roger");
         rafa = new Player("Rafa");
 

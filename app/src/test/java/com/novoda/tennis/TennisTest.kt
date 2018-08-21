@@ -10,7 +10,7 @@ class TennisTest {
     private val game = Game(roger, rafa)
 
     @Test
-    fun initialScoreShouldBeLoveAll() {
+    fun `initial score should be love all`() {
         val score = game.score()
 
         assertThat(score).isEqualTo("Love - Love")

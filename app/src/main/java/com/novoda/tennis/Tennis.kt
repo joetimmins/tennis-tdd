@@ -26,7 +26,7 @@ class Player constructor(val name: String) {
 
     fun scoresPoint() {
         if (currentScore == Point.GAME) return
-        currentScore = (if (currentScore == Point.FORTY && otherPlayerIsOnForty()) Point.ADVANTAGE else nextPoint())
+        currentScore = if (currentScore == Point.FORTY && otherPlayerIsOnForty()) Point.ADVANTAGE else nextPoint()
     }
 
     private fun nextPoint(): Point {

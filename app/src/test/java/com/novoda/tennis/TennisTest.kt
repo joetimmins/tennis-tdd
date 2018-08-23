@@ -5,8 +5,8 @@ import org.junit.Test
 
 class TennisTest {
 
-    private val roger = Player(name = "Roger")
-    private val rafa = Player(name = "Rafa")
+    private val roger = Player("Roger")
+    private val rafa = Player("Rafa")
     private val game = Game(roger, rafa)
 
     @Test

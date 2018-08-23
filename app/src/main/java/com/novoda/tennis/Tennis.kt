@@ -3,8 +3,11 @@ package com.novoda.tennis
 class Game(private val playerOne: Player, private val playerTwo: Player) {
 
     init {
-        playerOne.otherPlayerIsOnForty = { playerTwo.currentScore == Point.FORTY }
-        playerTwo.otherPlayerIsOnForty = { playerOne.currentScore == Point.FORTY }
+        playerOne.otherPlayerScore = { playerTwo.currentScore }
+        playerTwo.otherPlayerScore = { playerOne.currentScore }
+
+        playerOne.setToDeuce = { playerTwo.currentScore = Point.FORTY }
+        playerTwo.setToDeuce = { playerOne.currentScore = Point.FORTY }
     }
 
     fun score(): String {
@@ -22,16 +25,31 @@ class Game(private val playerOne: Player, private val playerTwo: Player) {
 
 class Player constructor(val name: String) {
     var currentScore: Point = Point.LOVE
-    lateinit var otherPlayerIsOnForty: () -> Boolean
+    internal lateinit var otherPlayerScore: () -> Point
+    internal lateinit var setToDeuce: () -> Unit
 
     fun scoresPoint() {
-        if (currentScore == Point.GAME) return
-        currentScore = if (currentScore == Point.FORTY && otherPlayerIsOnForty()) Point.ADVANTAGE else nextPoint()
+        when {
+            currentScore == Point.GAME -> return
+            currentScore != Point.FORTY -> currentScore = Point.values()[currentScore.ordinal + 1]
+            currentScore == Point.FORTY -> currentScore = dealWithForty()
+        }
     }
 
-    private fun nextPoint(): Point {
-        return if (currentScore == Point.FORTY) Point.GAME else Point.values()[currentScore.ordinal + 1]
+    private fun dealWithForty(): Point {
+        // other player is on forty -> ADV
+        // other player is on ADV -> i stay on forty, they go to forty
+        // else -> GAME
+        return when {
+            otherPlayerScore() == Point.FORTY -> Point.ADVANTAGE
+            otherPlayerScore() == Point.ADVANTAGE -> {
+                setToDeuce()
+                Point.FORTY
+            }
+            else -> Point.GAME
+        }
     }
+
 }
 
 enum class Point(val asString: String) {

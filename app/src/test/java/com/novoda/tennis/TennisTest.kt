@@ -34,7 +34,7 @@ class TennisTest {
     }
 
     @Test
-    fun `score tells us which player has won the game`() {
+    fun `when player one scores four consecutive points they win the game`() {
         roger.scoresPoint()
         roger.scoresPoint()
         roger.scoresPoint()
@@ -69,5 +69,21 @@ class TennisTest {
         roger.scoresPoint()
 
         assertThat(game.score()).isEqualTo("Advantage Roger")
+    }
+
+    @Test
+    fun `when one player has an advantage, score goes back to deuce when the other player scores a point`() {
+        roger.scoresPoint()
+        roger.scoresPoint()
+        roger.scoresPoint()
+
+        rafa.scoresPoint()
+        rafa.scoresPoint()
+        rafa.scoresPoint()
+
+        roger.scoresPoint()
+        rafa.scoresPoint()
+
+        assertThat(game.score()).isEqualTo("Deuce")
     }
 }

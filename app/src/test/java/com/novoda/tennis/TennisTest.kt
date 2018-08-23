@@ -34,13 +34,13 @@ class TennisTest {
     }
 
     @Test
-    fun `when player one scores four consecutive points they win the game`() {
-        roger.scoresPoint()
-        roger.scoresPoint()
-        roger.scoresPoint()
-        roger.scoresPoint()
+    fun `when player two scores four consecutive points they win the game`() {
+        rafa.scoresPoint()
+        rafa.scoresPoint()
+        rafa.scoresPoint()
+        rafa.scoresPoint()
 
-        assertThat(game.score()).isEqualTo("Roger wins!")
+        assertThat(game.score()).isEqualTo("Rafa wins!")
     }
 
     @Test
@@ -85,5 +85,26 @@ class TennisTest {
         rafa.scoresPoint()
 
         assertThat(game.score()).isEqualTo("Deuce")
+    }
+
+    @Test
+    fun `epic thriller of a game finishes with player two scoring two consecutive points to win, after two deuces`() {
+        roger.scoresPoint()
+        roger.scoresPoint()
+        roger.scoresPoint()
+
+        rafa.scoresPoint()
+        rafa.scoresPoint()
+        rafa.scoresPoint()
+        // first deuce
+
+        roger.scoresPoint()
+        rafa.scoresPoint()
+        // second deuce
+
+        rafa.scoresPoint()
+        rafa.scoresPoint()
+
+        assertThat(game.score()).isEqualTo("Rafa wins!")
     }
 }

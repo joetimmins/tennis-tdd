@@ -1,5 +1,7 @@
 package com.novoda.tennis
 
+import io.reactivex.Observable
+
 class Game(private val playerOne: Player, private val playerTwo: Player) {
 
     init {
@@ -21,6 +23,8 @@ class Game(private val playerOne: Player, private val playerTwo: Player) {
 
         return "${playerOne.currentScore.asString} - ${playerTwo.currentScore.asString}"
     }
+
+    fun scores(): Observable<String> = Observable.just("Love - Love")
 }
 
 class Player constructor(val name: String) {

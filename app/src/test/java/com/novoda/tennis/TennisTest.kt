@@ -1,5 +1,6 @@
 package com.novoda.tennis
 
+import io.reactivex.observers.TestObserver
 import org.fest.assertions.api.Assertions.assertThat
 import org.junit.Test
 
@@ -9,9 +10,11 @@ class TennisTest {
     private val rafa = Player("Rafa")
     private val game = Game(roger, rafa)
 
+    private val testObserver: TestObserver<String> = TestObserver()
+
     @Test
     fun `initial score should be love all`() {
-        assertThat(game.score()).isEqualTo("Love - Love")
+        assertScore("Love - Love")
     }
 
     @Test
@@ -21,7 +24,7 @@ class TennisTest {
         rafa.scoresPoint()
         rafa.scoresPoint()
 
-        assertThat(game.score()).isEqualTo("Thirty - Thirty")
+        assertScore("Thirty - Thirty")
     }
 
     @Test
@@ -30,7 +33,7 @@ class TennisTest {
         roger.scoresPoint()
         roger.scoresPoint()
 
-        assertThat(game.score()).isEqualTo("Forty - Love")
+        assertScore("Forty - Love")
     }
 
     @Test
@@ -40,7 +43,7 @@ class TennisTest {
         rafa.scoresPoint()
         rafa.scoresPoint()
 
-        assertThat(game.score()).isEqualTo("Rafa wins!")
+        assertScore("Rafa wins!")
     }
 
     @Test
@@ -53,7 +56,7 @@ class TennisTest {
         rafa.scoresPoint()
         rafa.scoresPoint()
 
-        assertThat(game.score()).isEqualTo("Deuce")
+        assertScore("Deuce")
     }
 
     @Test
@@ -68,7 +71,7 @@ class TennisTest {
 
         roger.scoresPoint()
 
-        assertThat(game.score()).isEqualTo("Advantage Roger")
+        assertScore("Advantage Roger")
     }
 
     @Test
@@ -84,7 +87,7 @@ class TennisTest {
         roger.scoresPoint()
         rafa.scoresPoint()
 
-        assertThat(game.score()).isEqualTo("Deuce")
+        assertScore("Deuce")
     }
 
     @Test
@@ -105,6 +108,10 @@ class TennisTest {
         rafa.scoresPoint()
         rafa.scoresPoint()
 
-        assertThat(game.score()).isEqualTo("Rafa wins!")
+        assertScore("Rafa wins!")
+    }
+
+    private fun assertScore(score: String) {
+        assertThat(game.score()).isEqualTo(score)
     }
 }

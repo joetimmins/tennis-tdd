@@ -1,4 +1,4 @@
-Tennis Kata
+## Tennis Kata
 
 Tennis has a rather quirky scoring system, and to newcomers it can be a little difficult to keep track of. The tennis society has contracted you to build a scoreboard to display the current score during tennis games.
 

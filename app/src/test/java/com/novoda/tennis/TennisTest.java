@@ -23,6 +23,6 @@ public class TennisTest {
     public void initialScoreShouldBeLoveAll() {
         String score = game.score();
 
-        assertThat(score).isEqualTo("Love - Love");
+        assertThat(score).isEqualTo("Love All");
     }
 }

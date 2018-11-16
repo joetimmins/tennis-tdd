@@ -10,6 +10,6 @@ class Game {
     }
 
     String score() {
-        return null;
+        return "Love All";
     }
 }

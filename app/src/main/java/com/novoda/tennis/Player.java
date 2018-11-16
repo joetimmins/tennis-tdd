@@ -12,6 +12,9 @@ class Player {
         return name;
     }
 
+    void scoresPoint() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

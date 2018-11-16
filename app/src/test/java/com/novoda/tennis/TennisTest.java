@@ -25,4 +25,36 @@ public class TennisTest {
 
         assertThat(score).isEqualTo("Love All");
     }
+
+    @Test
+    public void scoreShouldBeFifteenLoveAfterPlayerOneScoresAPoint() {
+        roger.scoresPoint();
+
+        String score = game.score();
+
+        assertThat(score).isEqualTo("Fifteen - Love");
+    }
+
+    @Test
+    public void scoreShouldBeThirtyLoveAfterPlayerOneScoresTwoPoints() {
+        roger.scoresPoint();
+        roger.scoresPoint();
+
+        String score = game.score();
+
+        assertThat(score).isEqualTo("Thirty - Love");
+    }
+
+    @Test
+    public void scoreShouldBeThirtyAllAfterBothPlayersScoreTwoPoints() {
+        roger.scoresPoint();
+        roger.scoresPoint();
+
+        rafa.scoresPoint();
+        rafa.scoresPoint();
+
+        String score = game.score();
+
+        assertThat(score).isEqualTo("Thirty All");
+    }
 }
